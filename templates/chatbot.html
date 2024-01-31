@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chat with hillbilly Billy</h1>
+    <div id="chatbox">
+        {% for message in messages %}
+            <div class="{{ 'user' if message.role == 'user' else 'assistant' }}">
+                {{ message.content }}
+            </div>
+        {% endfor %}
+    </div>
+    <form method="POST">
+        <input type="text" name="query" placeholder="Enter your query" autofocus>
+        <input type="submit" value="Send">
+    </form>
+
+    <style>
+        #chatbox {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+        .user {
+            text-align: right;
+            color: blue;
+        }
+        .assistant {
+            text-align: left;
+            color: green;
+        }
+    </style>
+    <script>
+        var chatBox = document.getElementById('chatbox');
+        chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom
+    </script>
+</body>
+</html>
